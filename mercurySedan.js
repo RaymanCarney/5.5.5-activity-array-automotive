@@ -20,9 +20,45 @@ class Car extends VehicleModule {
         this.fuel = 10
         this.scheduleService = false
     }
+    checkService(){
+        if(this.mileage > 30000){
+            this.scheduleService = true
+            return this.scheduleService
+        }
+    }
+
+    start() {
+        if(this.fuel > 0) {
+            console.log(`engine has started.`)
+            return this.started = true
+        } else {
+            console.log(`no fuel`)
+            return this.started = false
+        }
+    }
     
+    loadPassenger(num) {
+        if (this.passengers < this.maxPassengers) {
+            if ((num + this.passengers) <= this.maxPassengers) {
+                this.passengers = num
+                return this.passengers
+            } else {
+                console.log(this.model + " " + this.make + " not have enough space to take all passengers.")
+            }
+        } else {
+            console.log(this.model + " " + this.make + " is full")
+        }
+    }
 }
 
+let myCar = new Car(`mercury`, `rad_sedan`, `2002`, `white`, 50000)
+
+myCar.start()
+myCar.loadPassenger(5)
+myCar.stop()
+myCar.checkService()
+
+console.log(myCar)
 //TO DO: Code the Car subclass here or in index.js file, i.e. class Car extends Vehicle ...
 
 
